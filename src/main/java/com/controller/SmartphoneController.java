@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
-@CrossOrigin("*")
+@CrossOrigin("*")   // allow different sources to call apis
 @RequestMapping("/api/smartphones")
 public class SmartphoneController {
     @Autowired
@@ -17,5 +19,20 @@ public class SmartphoneController {
     @PostMapping
     public ResponseEntity<Smartphone> createSmartphone(@RequestBody Smartphone smartphone) {
         return new ResponseEntity<>(smartphoneService.save(smartphone), HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<Iterable<Smartphone>> listSmartphones() {
+        return new ResponseEntity<>(smartphoneService.findAll(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Smartphone> deleteSmartphone(@PathVariable Long id) {
+        Optional<Smartphone> smartphoneOptional = smartphoneService.findById(id);
+        if (!smartphoneOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        smartphoneService.remove(id);
+        return new ResponseEntity<>(smartphoneOptional.get(), HttpStatus.NO_CONTENT);
     }
 }
