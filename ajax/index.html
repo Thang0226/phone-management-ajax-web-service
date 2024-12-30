@@ -7,7 +7,7 @@
 </head>
 <body>
 <form id="add-smartphone">
-    <h1>Form create</h1>
+    <h2>Form create</h2>
     <table>
         <tr>
             <td><label for="producer">Producer:</label></td>
@@ -24,6 +24,33 @@
         <tr>
             <td></td>
             <td><button type="submit" onclick="addNewSmartPhone()">Add</button></td>
+        </tr>
+    </table>
+</form>
+<br><br>
+
+<form id="update-smartphone">
+    <h2>Form update</h2>
+    <table>
+        <tr>
+            <td><label for="id">Smartphone ID:</label></td>
+            <td><input type="text" id="id" placeholder="ID" disabled></td>
+        </tr>
+        <tr>
+            <td><label for="producer_new">Producer:</label></td>
+            <td><input type="text" id="producer_new" placeholder="producer"></td>
+        </tr>
+        <tr>
+            <td><label for="model_new">Model:</label></td>
+            <td><input type="text" id="model_new" placeholder="model"></td>
+        </tr>
+        <tr>
+            <td><label for="price_new">Price:</label></td>
+            <td><input type="text" id="price_new" placeholder="price"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type="submit" onclick="saveSmartphone()">Update</button></td>
         </tr>
     </table>
 </form>
